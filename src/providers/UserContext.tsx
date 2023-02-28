@@ -33,7 +33,7 @@ interface IUserContext {
 
 export const UserContext = createContext({} as IUserContext)
 
-export function UserProvider({children}: IDefaultProviderProps){
+export const UserProvider = ({children}: IDefaultProviderProps)=>{
   const [ user, setUser ] = useState<IUser | null>(null)
 
   const navigate = useNavigate()
@@ -47,7 +47,7 @@ export function UserProvider({children}: IDefaultProviderProps){
   },[])
 
 
-  async function userRegister(data: IRegisterFormValues){
+  const userRegister = async (data: IRegisterFormValues)=>{
     try {
         const response = await api.post('/users', data)
         setUser(response.data.user)
@@ -63,7 +63,7 @@ export function UserProvider({children}: IDefaultProviderProps){
 
  
 
-  async function userLogin(data: ILoginFormValues){
+  const userLogin = async (data: ILoginFormValues)=>{
     try {
         const response = await api.post('/login', data)
         setUser(response.data.user)
@@ -77,7 +77,7 @@ export function UserProvider({children}: IDefaultProviderProps){
     }
   }
 
-  function userLogout(){
+  const userLogout = () =>{
 
     setUser(null)
     localStorage.removeItem('@TOKEN')

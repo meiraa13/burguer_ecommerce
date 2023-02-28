@@ -28,7 +28,7 @@ interface ICartContext{
   setSearchValue:React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function CartProvider({children}:IDefaultProviderProps){
+export const CartProvider = ({children}:IDefaultProviderProps) =>{
 
   const [products, setProducts] = useState<IProducts[]>([])
   const [modal, setModal] = useState(false)
