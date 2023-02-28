@@ -11,6 +11,7 @@ export interface IProducts{
   img:string;
   name:string;
   price:number;
+  toLowerCase?:string
 }
 
 interface ICartContext{

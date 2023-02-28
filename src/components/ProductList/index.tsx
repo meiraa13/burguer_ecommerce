@@ -9,8 +9,8 @@ const ProductList = () => {
   const {filteredProducts} = useContext(CartContext)
 
   const searchProducts = products.filter((product) => {
-    return filteredProducts == '' ? true : product.name.toLowerCase().includes(filteredProducts.toLowerCase()) || 
-    product.category.toLowerCase().includes(filteredProducts.toLowerCase());});
+    return filteredProducts == '' ? true : product.name.toLowerCase().includes(filteredProducts.toString().toLowerCase()) || 
+    product.category.toLowerCase().includes(filteredProducts.toString().toLowerCase());});
 
   return(
 
