@@ -6,11 +6,16 @@ import { StyledProductList } from './style';
 const ProductList = () => {
 
   const { products } = useContext(CartContext)
+  const {filteredProducts} = useContext(CartContext)
+
+  const searchProducts = products.filter((product) => {
+    return filteredProducts == '' ? true : product.name.toLowerCase().includes(filteredProducts.toLowerCase()) || 
+    product.category.toLowerCase().includes(filteredProducts.toLowerCase());});
 
   return(
 
     <StyledProductList>
-      {products && products.map((item)=>(
+      {searchProducts && searchProducts.map((item)=>(
         <ProductCard key={item.id} item={item} />
       ))}
     </StyledProductList>

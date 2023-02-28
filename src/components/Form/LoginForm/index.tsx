@@ -4,10 +4,20 @@ import Input from '../Input';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ILoginFormValues, UserContext } from '../../../providers/UserContext';
 import { useContext } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+
+
+const schema = yup.object({
+
+  email:yup.string().required('Campo obrigatório'),
+  password:yup.string().required('Campo obrigatório')
+
+})
 
 const LoginForm = () => {
   
-  const {register, handleSubmit, formState: { errors }} = useForm<ILoginFormValues>()
+  const {register, handleSubmit, formState: { errors }} = useForm<ILoginFormValues>({resolver:yupResolver(schema)})
   const {userLogin} = useContext(UserContext)
 
   const submit:SubmitHandler<ILoginFormValues> = (data) =>{

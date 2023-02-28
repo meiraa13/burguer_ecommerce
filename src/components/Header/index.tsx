@@ -5,14 +5,13 @@ import LogoKenzieBurguer from '../../assets/LogoKenzieBurguer.svg';
 import { StyledContainer } from '../../styles/grid';
 import { useContext } from 'react';
 import { UserContext } from '../../providers/UserContext';
+import { CartContext } from '../../providers/CartContext';
 
-interface IHeaderProps{
-  setModal:React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-const Header = ({setModal }:IHeaderProps) => {
+const Header = () => {
 
   const { userLogout } = useContext(UserContext)
+  const { setModal } = useContext(CartContext)
 
  return(
   

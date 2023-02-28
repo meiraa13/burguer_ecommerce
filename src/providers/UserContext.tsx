@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+import { toast } from "react-toastify";
 
 export interface IDefaultProviderProps{
   children: React.ReactNode;
@@ -33,7 +34,6 @@ interface IUserContext {
 export const UserContext = createContext({} as IUserContext)
 
 export function UserProvider({children}: IDefaultProviderProps){
-  const [loading, setLoading] = useState(false)
   const [ user, setUser ] = useState<IUser | null>(null)
 
   const navigate = useNavigate()
@@ -52,12 +52,12 @@ export function UserProvider({children}: IDefaultProviderProps){
         const response = await api.post('/users', data)
         setUser(response.data.user)
         localStorage.setItem('@TOKEN', response.data.accessToken)
-        alert('cadastro feito')
+        toast.success('Cadastro realizado!')
         navigate('/')
       
     }catch (error) {
         console.log(error)
-        alert('erro no cadastro')      
+        toast.error('Cadastro não realizado!')      
     }
   }
 
@@ -68,12 +68,12 @@ export function UserProvider({children}: IDefaultProviderProps){
         const response = await api.post('/login', data)
         setUser(response.data.user)
         localStorage.setItem('@TOKEN', response.data.accessToken)
-        alert('login feito')
+        toast.success('Bem-vindo!')
         navigate('/shop')
 
     }catch (error) {
       console.log(error)
-      alert('erro no login')
+      toast.error('Usuário ou senha inválidos')
     }
   }
 

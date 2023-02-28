@@ -4,10 +4,20 @@ import { StyledForm } from '../../../styles/form';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IRegisterFormValues, UserContext } from '../../../providers/UserContext';
 import { useContext } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+
+const schema = yup.object({
+  name:yup.string().required('Campo obrigatório'),
+  email:yup.string().email('Preencha com formato válido de email').required('Campo obrigatório'),
+  password:yup.string()
+  .matches(/.{6,}/, "Sua senha deve ter no mínimo 6 caracteres"),
+ 
+})
 
 const RegisterForm = () => {
 
-  const {register, handleSubmit, formState: { errors }} = useForm<IRegisterFormValues>()
+  const {register, handleSubmit, formState: { errors }} = useForm<IRegisterFormValues>({resolver:yupResolver(schema)})
   const { userRegister } = useContext(UserContext)
 
   function submit(data:IRegisterFormValues){

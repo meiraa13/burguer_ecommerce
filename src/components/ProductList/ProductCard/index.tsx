@@ -1,14 +1,16 @@
 import { StyledProductCard } from './style';
 import { StyledButton } from '../../../styles/button';
 import { StyledParagraph, StyledTitle } from '../../../styles/typography';
-import { IProducts } from '../../../providers/CartContext';
+import { CartContext, IProducts } from '../../../providers/CartContext';
+import { useContext } from 'react';
 
-interface IProductCard{
+interface IProductCardProps{
   item:IProducts;
 }
 
-const ProductCard = ({ item }:IProductCard) => {
+const ProductCard = ({ item }:IProductCardProps) => {
 
+  const {addProductToCart} = useContext(CartContext)
 
   return(
     
@@ -20,7 +22,7 @@ const ProductCard = ({ item }:IProductCard) => {
         <StyledTitle tag='h3' $fontSize='three'>{item.name}</StyledTitle>
         <StyledParagraph className='category'>{item.category}</StyledParagraph>
         <StyledParagraph className='price'>{item.price}</StyledParagraph>
-        <StyledButton $buttonSize='medium' $buttonStyle='green'> Adicionar </StyledButton>
+        <StyledButton $buttonSize='medium' $buttonStyle='green' onClick={() => {addProductToCart(item)}}> Adicionar </StyledButton>
       </div>
   </StyledProductCard>
 
