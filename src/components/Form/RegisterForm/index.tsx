@@ -12,6 +12,8 @@ const schema = yup.object({
   email:yup.string().email('Preencha com formato válido de email').required('Campo obrigatório'),
   password:yup.string()
   .matches(/.{6,}/, "Sua senha deve ter no mínimo 6 caracteres"),
+  confirmPassword:yup.string().oneOf([yup.ref('password')], 'Deve ser igual a senha').required('Campo obrigatório'),
+  
  
 })
 
@@ -32,7 +34,7 @@ const RegisterForm = () => {
     <StyledForm onSubmit={handleSubmit(submit)}>
         <Input label='nome' register={register('name')} type='text' error={errors.name}/>
         <Input label='senha' register={register('password')} type='password' error={errors.password}   />
-        {/* <Input label='confirme senha' /> */}
+        <Input label='confirme senha' register={register('confirmPassword')} type='password' error={errors.confirmPassword} />
         <Input label='email' register={register('email')} type='email' error={errors.email} />
         <StyledButton $buttonSize='default' $buttonStyle='gray'>
           Cadastrar

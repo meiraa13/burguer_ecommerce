@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { api } from "../services/api";
-import { toast } from "react-toastify";
+import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../services/api';
+import { toast } from 'react-toastify';
 
 export interface IDefaultProviderProps{
   children: React.ReactNode;
@@ -17,6 +17,7 @@ export interface IRegisterFormValues{
   email: string;
   password: string;
   name: string;
+  confirmPassword:string;
 }
 
 export interface ILoginFormValues{
@@ -43,6 +44,9 @@ export const UserProvider = ({children}: IDefaultProviderProps)=>{
     const token = localStorage.getItem('@TOKEN')
     if(token){
       navigate('/shop')
+    } else{
+      localStorage.removeItem('@TOKEN')
+      navigate('/')
     }
   },[])
 

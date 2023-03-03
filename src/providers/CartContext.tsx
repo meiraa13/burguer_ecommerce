@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import { api } from "../services/api";
-import { IDefaultProviderProps } from "./UserContext";
-import { toast } from "react-toastify";
+import { createContext, useEffect, useState } from 'react';
+import { api } from '../services/api';
+import { IDefaultProviderProps } from './UserContext';
+import { toast } from 'react-toastify';
 
 export const CartContext = createContext({} as ICartContext)
 
@@ -65,22 +65,22 @@ export const CartProvider = ({children}:IDefaultProviderProps) =>{
     const checkCart = currentSale.find((item) => item.id == product.id);
 
     if (checkCart) {
-      toast.error("Este produto já está no carrinho!");
+      toast.error('Este produto já está no carrinho!');
     } else {
       setCurrentSale([...currentSale, product]);
-      toast.success("Produto adicionado com sucesso!");
+      toast.success('Produto adicionado com sucesso!');
     }
   }
 
   const removeProductFromCart = (productId:number) =>{
     const filteredList = currentSale.filter((item) => item.id !== productId);
     setCurrentSale(filteredList);
-    toast.warning("Produto removido");
+    toast.warning('Produto removido');
   }
 
   return(
-      <CartContext.Provider value=
-      {{ products, modal, setModal, addProductToCart, currentSale, setCurrentSale,removeProductFromCart,filteredProducts,searchValue,setFilteredProducts,setSearchValue }}>
+      <CartContext.Provider value={{ products, modal, setModal, addProductToCart, currentSale, setCurrentSale,
+        removeProductFromCart, filteredProducts, searchValue, setFilteredProducts,setSearchValue }}>
         {children}
       </CartContext.Provider>
   )

@@ -2,7 +2,7 @@ import Router from './routes';
 import { GlobalStyles } from './styles/global';
 import { UserProvider } from './providers/UserContext';
 import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => (
   <>
@@ -11,7 +11,7 @@ const App = () => (
       <Router />
     </UserProvider>
     <ToastContainer
-        position="top-right"
+        position='top-right'
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -20,7 +20,7 @@ const App = () => (
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme='light'
       />
   </>
 );
