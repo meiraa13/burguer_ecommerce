@@ -5,13 +5,13 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { IRegisterFormValues, UserContext } from '../../../providers/UserContext';
 import { useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from "yup"
+import * as yup from 'yup'
 
 const schema = yup.object({
   name:yup.string().required('Campo obrigatório'),
   email:yup.string().email('Preencha com formato válido de email').required('Campo obrigatório'),
   password:yup.string()
-  .matches(/.{6,}/, "Sua senha deve ter no mínimo 6 caracteres"),
+  .matches(/.{6,}/, 'Sua senha deve ter no mínimo 6 caracteres'),
   confirmPassword:yup.string().oneOf([yup.ref('password')], 'Deve ser igual a senha').required('Campo obrigatório'),
   
  

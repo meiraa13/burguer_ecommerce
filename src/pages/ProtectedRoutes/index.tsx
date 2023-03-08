@@ -1,5 +1,5 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { CartProvider } from "../../providers/CartContext";
+import { Navigate, Outlet } from 'react-router-dom';
+import { CartProvider } from '../../providers/CartContext';
 
 export const ProtectedRoutes = () =>{
 

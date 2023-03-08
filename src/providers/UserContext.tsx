@@ -41,13 +41,27 @@ export const UserProvider = ({children}: IDefaultProviderProps)=>{
 
   useEffect(()=>{
 
-    const token = localStorage.getItem('@TOKEN')
-    if(token){
-      navigate('/shop')
-    } else{
-      localStorage.removeItem('@TOKEN')
-      navigate('/')
+    async function autoLogin(){
+      try {
+          const token = localStorage.getItem('@TOKEN')
+          if(token){
+            const response = await api.get('/products',{
+              headers:{
+                Authorization: `Bearer ${token}`
+              }
+            })
+            navigate('/shop') 
+          }
+       
+
+      } catch (error) {
+        console.log(error)
+        localStorage.removeItem('@TOKEN')
+        navigate('/')
+      }
+
     }
+    autoLogin()
   },[])
 
 
